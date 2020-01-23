@@ -30,6 +30,7 @@ make_plot <- function(slider_time) {
 sf <- lubridate::stamp("Jan 7, 2020 4am")
 
 ui <- fluidPage(
+  h1("Serie de Terremotos en Puerto Rico Invierno 2019-2020"),
   sliderInput("time", "Fecha", 
               min(dat$day),
               max(dat$day),
