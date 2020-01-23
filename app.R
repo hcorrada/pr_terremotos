@@ -1,7 +1,5 @@
 library(tidyverse)
 library(httr)
-library(clipr)
-library(geojsonio)
 library(leaflet)
 library(shiny)
 
@@ -34,11 +32,11 @@ server <- function(input, output, session) {
   })
   
   output$themap <- renderLeaflet({
-    points() %>%
-      leaflet() %>%
+      leaflet(options=leafletOptions(zoomControl=FALSE)) %>%
       setView(lat=18, lng=-66.5, zoom=8) %>%
       addTiles() %>%
-      addCircleMarkers(lat=~latitude,
+      addCircleMarkers(data=points(),
+                       lat=~latitude,
                        lng=~longitude,
                        radius=~mag*2.5,
                        color="navy",
